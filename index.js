@@ -4,11 +4,15 @@
 require('dotenv').config() //imports .env file and give it in to process.env
 const express = require('express') //importing express
 const cors = require('cors')     //importing cors
+const router= require('./routes/router')
+require('./database/dbConnection') 
 
 const pfserver= express()  //creating express server
 
 pfserver.use(cors()) //using cors
 pfserver.use(express.json())  //using express.json()
+pfserver.use(router)
+pfserver.use('/uploads', express.static('./uploads'))
 
 const PORT= 3000 || process.env.PORT //setting port for run
 
